@@ -1,0 +1,77 @@
+#This is my very first python function
+#the range of year is not very large. I think the leap year have some problem.
+#leap year should be (Y-2000) % 4 = 0, and (Y-2000) % 400 = 0, but (Y-2000) % 100 = 0 is not leap year.
+#hope you can make it prefect.
+
+
+
+
+
+#######################################################
+# My answer is based on a method that I found online. 
+# The formula is the remainder of (Y+L+M+D)/7
+#Y=Year(without the first number)
+#L=the number of leap year until this date
+#M=the number that correspond to the given month
+#D=day
+#IF I get 0=>Sunday,1=>monday....6=>staturday
+#######################################################
+
+def weekday(M,D,Y): 
+    #My range from March, 1900 ~ March,2100
+    if M<1 or M>12 or D <1 or D>31:
+        print('please input the correct date')
+        return  
+    #change the month to a coresponding number    
+    if M==1 or M==10:
+        mm=5
+    elif M==2 or M==3 or M==11:
+        mm=1
+    elif M==4 or M==7:
+        mm=4
+    elif M==5:
+        mm=6
+    elif M==6:
+        mm=2
+    elif M==8:
+        mm=0
+    else :
+        mm=3
+   #calculate the number of leap years until this date     
+    if (Y-2000)>0:
+        
+        if (Y-2000) % 4 != 0 : 
+            n=int((Y-2000)/4)+1
+        elif (Y-2000) % 4 == 0 and M>=3 :
+            n=int((Y-2000)/4)+1
+        else:
+            n=int((Y-2000)/4)
+    else:  
+        if (Y-2000) % 4 != 0 : 
+            n=int((Y-2000)/4)
+        elif (Y-2000) % 4 == 0 and M<3:
+            n=int((Y-2000)/4)
+        else:
+            n=int((Y-2000)/4)+1
+    
+    
+    #the formula
+    wkd=((Y-2000)+n+mm+D) % 7
+    
+    #output
+    if wkd==0:
+        print('Sunday')
+    elif wkd==1:
+        print('Monday')
+    elif wkd==2:
+        print('Tuesday')
+    elif wkd==3:
+        print('Wednesday')
+    elif wkd==4:
+        print('Thursday')
+    elif wkd==5:
+        print('Friday')
+    else:
+        print('Saturday')
+   
+        return   
